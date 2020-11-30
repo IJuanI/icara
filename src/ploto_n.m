@@ -1,0 +1,35 @@
+if exist('g_combine')
+  old_combine = g_combine;
+endif
+
+if !exist('midi_notes')
+  input_midi;
+endif
+
+icara_synchronize;
+
+if !exist('g_combine') || !g_combine
+  figure;
+endif
+
+g_combine = true;
+g_color = 6;
+g_offset = .05;
+notes = midi_notes;
+plot_n;
+
+clear notes;
+g_color = 1;
+g_offset = 0;
+plot_n;
+
+clear g_offset;
+
+if exist('old_combine')
+  g_combine = old_combine;
+  clear old_combine;
+else
+  clear g_combine;
+endif
+
+clear g_color;
